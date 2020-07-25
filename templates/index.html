@@ -1,0 +1,117 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+    <title>Calculator</title>
+</head>
+
+<body class="bg-light">
+
+    <!--NAV BAR-->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
+        <a class="navbar-brand" href="calcapp">Django Calaculator App</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="#about">About</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="container-fluid" style="margin-bottom: 40rem;">
+        <div class="row">
+            <div class="col-md-6" style="margin: 5rem auto 0 auto;">
+            {% if error %}
+                <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                    <strong>Error Occured!!</strong>
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                {% else %}
+                <div class="alert alert-success alert-dismissible fade show" role="alert">
+                    <strong>{{q}} ==> {{ans}}</strong>
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+            {% endif %}
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6" style="margin: 1rem auto 0 auto;">
+                <img class="img-fluid" src="{% static 'main.jpg' %}">
+                <div class="card">
+                    <div class="card-body">
+                        <form method="POST" action="{% url 'submit' %}">
+                            {% csrf_token %}
+                            <div class="form-group">
+                                <input type="search" class="form-control" id="query" placeholder="Enter query"
+                                    name="query">
+                            </div>
+                            <div class="container-fluid">
+                                <div class="row" style="padding-right: 5rem;padding-left: 5rem;">
+                                    <input type="submit" class="btn btn-success"
+                                        style="display: block; margin: 1rem auto;">
+                                    <input type="reset" class="btn btn-danger"
+                                        style="display: block; margin: 1rem auto;">
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--ABOUT-->
+        <div class="row">
+            <div class="col-md-12" style="margin: 2rem auto 12rem auto; text-align: center;">
+                <p class="display-4" id="about" name="about">
+                    About
+                </p>
+                <p class="lead">
+                    This is our very first operation for A Light Weight Web Calaculator which is based on Django Rest
+                    Web Framework written in PYTHON...
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <!-- FOOTER -->
+    <div class="container-fluid">
+        <div class="row">
+            <footer class="fixed-bottom" style="background-color:black; color:aliceblue;text-align: center;">
+                That's How We Do It
+            </footer>
+        </div>
+    </div>
+
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+        crossorigin="anonymous"></script>
+</body>
+
+</html>
